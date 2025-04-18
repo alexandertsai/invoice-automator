@@ -1,5 +1,5 @@
 # invoice-automator
-(For Mac) Uses Applescript and Python to automate the generation of custom invoices using your invoice template (Word file), and the sending of these invoices through Outlook.
+(For Mac) Uses Applescript and Python to automate the generation of custom invoices using your invoice template (Word file), and the sending of these invoices through Outlook. This was made for the specific case where you (the master tenant) might need to send rental charges or utilities charges.
 
 ### Generating the invoices
 
@@ -13,7 +13,7 @@ pip install -r requirements.txt
 # pip3 for Python 3 specifically
 ```
 
-3. Before running the script, prepare the following a template word document with your desired variables in these {brackets}. For example: 
+3. Before running the script, you must prepare a CSV file and a word template. Prepare a template word document with your desired variables in these {brackets}. For example: 
 
 
 > Dear {name},
@@ -27,18 +27,18 @@ pip install -r requirements.txt
 | John | $60 | 23/5 |
 | Walt | $55 | 22/2 |
 
-5. Have a folder where you want to generate your invoices in.
-6. Now you're ready! Open `app v1.py` and run the script (F5 is usually the shortcut) and select your files.
+5. Have a folder where you want to generate your invoices in. In the script this is named an abbreviation of the current month and rental. E.g. "AprRental".
+6. Now you're ready! Open `invoice-generator.py` and run the script (F5 is usually the shortcut) and select your files.
 
 ### Sending the invoices
 
-7. Set up your `email_list.csv`. This should contain the emails and the company code that references your invoices.
+7. Set up your `email_list.csv`. This should contain list of people you plan to email. GTO refers to additional information you might want to put in the email. 0 indicates you want to include this information, 1 indicates you don't. For example, some tenants might need to report their gross sales number.
 
-| Company Code | receiver | cc recipients | salutation |
-| ----- | -------- | -------------- | ---- |
-| APPL | stevejobs@gmail.com | timcook@hotmail.com; warrenbuffet@hotmail.com | Steve |
-| WMT | walmartboss@gmail.com | employee1@gmail.com | Mr Wall |
+| Company Code | receiver | cc recipients| salutation | GTO |
+| ----- | -------- | -------------- | ---- | --- |
+| APPL | stevejobs@gmail.com | timcook@hotmail.com; warrenbuffet@hotmail.com | Steve | 0 |
+| WMT | walmartboss@gmail.com | employee1@gmail.com | Mr Wall | 1 |
 
 8. Open invoiceSender.scpt (AppleScript).
-9. Modify the fields with the emojis next to them. To get a path to your file on Mac: click on the file and press Command+I. The file path is under "where". 
+9. Modify all paths (they all have "/your/path/to), the sender, the BCC, the subject and the email content.
 10. Compile with command + k and run with command + r
